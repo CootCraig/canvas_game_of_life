@@ -218,7 +218,8 @@ var game_of_life = (function(){
 }());
 
 game_of_life.display = (function(){
-  var background_style = "rgb(200,200,200)",
+  var background_style = "rgb(240,240,240)",
+  border_style = "rgb(0,0,0)",
   canvas = null,
   context = null,
   draw = null,
@@ -234,33 +235,53 @@ game_of_life.display = (function(){
   draw_obj.set_canvas_by_id = set_canvas_by_id;
 
   draw = function(cell_array){
-    var extent = {x_min: null, x_max: null, y_min: null, y_max: null},
+    var canvas_aspect_ratio = 1.0,
+    canvas_center_x = 0.0,
+    canvas_center_y = 0.0,
+    extent = {x_min: null, x_max: null, y_min: null, y_max: null},
+    extent_aspect_ratio = 1.0,
     i,
     len,
-    x,
-    y;
+    scale = 1.0;
 
     extent = extent_from_cell_array(cell_array);
-    // Add one cell boundary
-    extent.x_min -= 1;
-    extent.x_max += 1;
-    extent.y_min -= 1;
-    extent.y_max += 1;
 
+    canvas_aspect_ratio = canvas.width / canvas.height;
+    extent_aspect_ratio = (extent.x_max - extent.x_min + 1) / (extent.y_max - extent.y_min + 1);
+    coot.log('canvas_aspect_ratio=' + canvas_aspect_ratio + ' extent_aspect_ratio=' + extent_aspect_ratio);
+
+    if (canvas_aspect_ratio >= extent_aspect_ratio) {
+      // match extent y to canvas y so whole height is filled
+      // center extent x on canvas x with canvas showing at left and right
+      scale = canvas.height / (extent.y_max - extent.y_min + 1.0);
+      canvas_center_x = (canvas.width - ((extent.x_max - extent.x_min + 1) * scale)) / 2.0;
+      canvas_center_y = 0.0;
+    } else {
+      // match extent x to canvas x so whole width is filled
+      // center extent y on canvas y with canvas showing at top and bottom
+      scale = canvas.width / (extent.x_max - extent.x_min + 1.0);
+      canvas_center_x = 0.0;
+      canvas_center_y = (canvas.height - ((extent.y_max - extent.y_min + 1) * scale)) / 2.0;
+    }
+    coot.log('scale=' + scale + ' canvas_center_x=' + canvas_center_x + ' canvas_center_y=' + canvas_center_y);
     context.setTransform(1,0,0,1,0,0);
     context.fillStyle = background_style;
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.translate((-10 * extent.x_min),(-10 * extent.y_min));
-    //context.scale(((10 * (extent.x_max-extent.x_min))/(canvas.width)),((10 * (extent.y_max-extent.y_min))/(canvas.height)));
-    context.scale(1.5,1.5);
+    context.fillStyle = "rgb(0,0,0)";
+    context.fillRect(0,0,canvas.width,4);
+    context.fillRect(0,0,4,canvas.height);
+    context.fillRect(0,canvas.height-4,canvas.width,4);
+    context.fillRect(canvas.width-4,0,4,canvas.height);
+
+    context.translate(canvas_center_x,canvas_center_y);
+    context.scale(scale,scale);
+    context.translate(-extent.x_min,-extent.y_min);
 
     context.fillStyle = live_cell_style;
 
     len = cell_array.length;
     for (i=0; i<len; i+=1){
-      x = cell_array[i].x;
-      y = cell_array[i].y;
-      context.fillRect(x*10,y*10,x+10,y+10);
+      context.fillRect(cell_array[i].x,cell_array[i].y,0.94,0.94);
     }
   };
   draw_obj.draw = draw;
