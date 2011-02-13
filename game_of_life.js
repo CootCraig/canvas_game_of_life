@@ -76,6 +76,7 @@ var game_of_life = (function(){
       var i,
       len = pos_array.length;
 
+      live_cells = {};
       for (i=0; i<len; i+=1) {
         set_position(pos_array[i]);
       }
@@ -167,9 +168,6 @@ var game_of_life = (function(){
     board.extent = extent;
 
     step = function(){
-      if (live_cell_count() === 0) {
-        return 0;
-      }
       var board_extent = extent(),
       cell_key = '',
       is_alive = false,
@@ -178,6 +176,10 @@ var game_of_life = (function(){
       pos = empty_position(),
       x = 0,
       y = 0;
+
+      if (live_cell_count() === 0) {
+        return 0;
+      }
 
       // Need to check cells just outside the current extent
       board_extent.x_min -= 1;
@@ -248,7 +250,6 @@ game_of_life.display = (function(){
 
     canvas_aspect_ratio = canvas.width / canvas.height;
     extent_aspect_ratio = (extent.x_max - extent.x_min + 1) / (extent.y_max - extent.y_min + 1);
-    coot.log('canvas_aspect_ratio=' + canvas_aspect_ratio + ' extent_aspect_ratio=' + extent_aspect_ratio);
 
     if (canvas_aspect_ratio >= extent_aspect_ratio) {
       // match extent y to canvas y so whole height is filled
@@ -263,7 +264,6 @@ game_of_life.display = (function(){
       canvas_center_x = 0.0;
       canvas_center_y = (canvas.height - ((extent.y_max - extent.y_min + 1) * scale)) / 2.0;
     }
-    coot.log('scale=' + scale + ' canvas_center_x=' + canvas_center_x + ' canvas_center_y=' + canvas_center_y);
     context.setTransform(1,0,0,1,0,0);
     context.fillStyle = background_style;
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -309,7 +309,6 @@ game_of_life.display = (function(){
         ext.y_max = pos.y;
       }
     }
-    coot.log('extent ' + ext.x_min + ',' + ext.y_min + ',' + ext.x_max + ',' + ext.y_max);
     return ext;
   };
 

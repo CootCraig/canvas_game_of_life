@@ -1,0 +1,13 @@
+wget http://www.conwaylife.com/pattern.asp?p=acorn_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=blinker_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=glider_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=gosperglidergun_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=switchengine_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=sparkcoil_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=piston_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=testtubebaby_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=longsnake_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=bipond_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=chickenwire_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=mwss_106.lif
+wget http://www.conwaylife.com/pattern.asp?p=bargespaceship_106.lif
