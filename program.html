@@ -1,23 +1,59 @@
 <html>
   <head>
-    <title>JavaScript The Good Parts - Program</title>
-    <style type="text/css">
-    </style>
+    <title>Game of Life</title>
+    <link rel="stylesheet" type="text/css" href="base.css" />
   </head>
   <body>
     <pre>
       <script src="jquery-1.5.min.js" type="text/javascript" ></script>
       <script src="util.js" type="text/javascript" ></script>
     </pre>
-    <canvas id="life" width="600" height="450"></canvas>
-    <div id="controls">
-      Pick a cell pattern:
-      <select id="pattern_select"></select>
-      <button id="reload_button">Reload</button>
-      <button id="step_button">Step</button>
-      <button id="run_button">Run</button>
+    <div id="left_side">
+      <div id="controls">
+        Pick a cell pattern:
+        <select id="pattern_select"></select>
+        <br/>
+        <button id="reload_button">Reload</button>
+        <button id="step_button">Step</button>
+        <button id="run_button">Run</button>
+      </div>
+      <canvas id="life" width="460" height="400"></canvas>
+      <div id="log" ></div>
     </div>
-    <div id="log" ></div>
+    <div id="right_side">
+      <h2>Game Of Life</h2>
+      <h4>Coded by Craig H. Anderson</h4>
+      <div id="notes_nav">
+        <span id="show_game_rules" class="nav_select selected_notes_nav">Rules</span>
+        -
+        <span id="show_about_craig" class="nav_select">About Craig</span>
+        -
+        <span id="show_code_overview" class="nav_select">Code Overview</span>
+      </div>
+      <div id="game_rules">
+        <h3>Rules of the Game</h3>
+        Every new generation of Life is determined from the previous generation by three simple rules:
+        <ul>
+          <li>If an alive cell has two or three alive neighboring cells, it stays alive.</li>
+          <li>If a dead cell has exactly three alive neighboring cells, it comes to life.</li>
+          <li>Otherwise, the cell will stay dead or die.</li>
+        </ul>
+        A "neighboring cell" is any of the eight cells adjacent or diagonally adjacent to the given cell.
+        <h4>Source of Cell Patterns</h4>
+      </div>
+      <div id="code_overview">
+        <h3>Code Overview</h3>
+        Nothing to see here yet. Crockford is aces.
+      </div>
+      <div id="about_craig">
+        <h3>About Craig</h3>
+        <p>
+          Tom he made a sign to me--kind of a little noise with his mouth--and we
+          went creeping away on our hands and knees.  When we was ten foot off Tom
+          whispered to me, and wanted to tie Jim to the tree for fun.
+        </p>
+      </div>
+    </div>
     <script src="game_of_life.js" type="text/javascript"></script>
     <script src="patterns.js" type="text/javascript"></script>
     <script src="program.js" type="text/javascript"></script>

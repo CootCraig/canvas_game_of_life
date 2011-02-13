@@ -1,0 +1,41 @@
+#left_side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 470px;
+    margin-top: 90px;
+}
+#right_side {
+    margin-left: 480px;
+    width: 500px;
+}
+#controls {
+    margin-bottom: 30px;
+}
+#log {
+}
+#notes_nav {
+    border-top: black solid 3px;
+    border-bottom: black solid 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.selected_notes_nav {
+    background-color: rgb(220,220,220);
+}
+#game_rules {
+    display: block;
+}
+#code_overview {
+    display: none;
+}
+#about_craig {
+    display: none;
+}
+.nav_select {
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
+    padding-left: 2px;
+    padding-right: 2px;
+}

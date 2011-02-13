@@ -130,5 +130,27 @@
   current_pattern = initial_pattern;
   game.set_position_array(game_of_life.patterns[current_pattern]);
   display.draw(game.live_cells());
+
+  $("#show_game_rules").click(function(){
+    $("#game_rules").css("display","block");
+    $("#code_overview").css("display","none");
+    $("#about_craig").css("display","none");
+    $(".nav_select").removeClass("selected_notes_nav");
+    $("#show_game_rules").addClass("selected_notes_nav");
+  });
+  $("#show_about_craig").click(function(){
+    $("#game_rules").css("display","none");
+    $("#code_overview").css("display","none");
+    $("#about_craig").css("display","block");
+    $(".nav_select").removeClass("selected_notes_nav");
+    $("#show_about_craig").addClass("selected_notes_nav");
+  });
+  $("#show_code_overview").click(function(){
+    $("#game_rules").css("display","none");
+    $("#code_overview").css("display","block");
+    $("#about_craig").css("display","none");
+    $(".nav_select").removeClass("selected_notes_nav");
+    $("#show_code_overview").addClass("selected_notes_nav");
+  });
 })();
 
